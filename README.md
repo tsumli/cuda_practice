@@ -1,4 +1,5 @@
 # Cuda Practice
+[![CMake on a single platform](https://github.com/tsumli/cuda_practice/actions/workflows/ci_test.yml/badge.svg?branch=main)](https://github.com/tsumli/cuda_practice/actions/workflows/ci_test.yml)
 
 ## Build docker image
 
