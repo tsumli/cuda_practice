@@ -1,0 +1,4 @@
+#ifndef SRC_COMMON_UTILS_HPP_
+#define SRC_COMMON_UTILS_HPP_
+
+#endif  // SRC_COMMON_UTILS_HPP_

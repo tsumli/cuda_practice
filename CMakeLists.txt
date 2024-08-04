@@ -16,9 +16,10 @@ set(CMAKE_CXX_FLAGS "-Wall -Wextra")
 set(CMAKE_CXX_FLAGS_DEBUG "-g")
 
 # cuda settings
-set(CMAKE_CUDA_STANDARD 23)
+set(CMAKE_CUDA_STANDARD 20)
 set(CMAKE_CUDA_STANDARD_REQUIRED True)
-set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS} -ccbin /usr/local/bin/g++ --allow-unsupported-compiler)
+set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS} 
+    -ccbin /usr/local/bin/g++ --allow-unsupported-compiler --cuda-gpu-arch=sm_89)
 
 # project settings and add targets
 add_library(${LIB_NAME})

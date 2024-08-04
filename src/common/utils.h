@@ -1,4 +1,0 @@
-#ifndef SRC_COMMON_UTILS_H_
-#define SRC_COMMON_UTILS_H_
-
-#endif  // SRC_COMMON_UTILS_H_
