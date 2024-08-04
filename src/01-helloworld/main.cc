@@ -1,5 +1,3 @@
-// Copyright
-
 #include <iostream>
 
 int main() {
