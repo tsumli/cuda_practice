@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.5.1-cudnn-devel-ubuntu22.04
+FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04
 SHELL ["/bin/bash", "-c"]
 
 # install libraries
@@ -17,9 +17,9 @@ RUN apt install -y \
     ninja-build
 
 # install gcc/gdb
-RUN wget https://github.com/gcc-mirror/gcc/archive/refs/tags/releases/gcc-13.2.0.tar.gz &&\
-    tar xvf gcc-13.2.0.tar.gz
-WORKDIR /gcc-releases-gcc-13.2.0
+RUN wget https://github.com/gcc-mirror/gcc/archive/refs/tags/releases/gcc-12.4.0.tar.gz &&\
+    tar xvf gcc-12.4.0.tar.gz
+WORKDIR /gcc-releases-gcc-12.4.0
 RUN ./contrib/download_prerequisites
 RUN mkdir build && \
     cd build && \

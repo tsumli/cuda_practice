@@ -1,6 +1,13 @@
+# Build common library
 set(LIB_SRC
-    common/utils.hpp
+    common/exception.h
+    common/utils.cc
+    common/cuda/utils.h
+    common/cuda/pointer.h
 )
 target_sources(${LIB_NAME} PRIVATE ${LIB_SRC})
+target_include_directories(${LIB_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
-add_subdirectory(01-helloworld)
+# Build examples
+add_subdirectory(00-helloworld)
+add_subdirectory(01-add-scalar)

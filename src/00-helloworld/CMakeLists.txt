@@ -1,4 +1,4 @@
-set(executable_name 01-helloworld)
+set(executable_name 00-helloworld)
 add_executable(${executable_name})
 target_link_libraries(${executable_name} PRIVATE ${LIB_NAME})
 
