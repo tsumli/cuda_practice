@@ -24,7 +24,7 @@ std::vector<T> GetVectorFromDevice(const T* const value_device, const size_t siz
 }
 
 template <typename T>
-void CopyToDevice(const T* value_device, const T* const value_host, const std::size_t size) {
+void CopyToDevice(T* value_device, const T* const value_host, const std::size_t size) {
     THROW_IF_FAILED(cudaMemcpy(value_device, value_host, sizeof(T) * size, cudaMemcpyHostToDevice));
 }
 }  // namespace cupr::cuda

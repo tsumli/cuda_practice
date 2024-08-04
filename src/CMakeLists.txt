@@ -11,3 +11,4 @@ target_include_directories(${LIB_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 # Build examples
 add_subdirectory(00-helloworld)
 add_subdirectory(01-add-scalar)
+add_subdirectory(02-add-vector)
