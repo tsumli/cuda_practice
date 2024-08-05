@@ -17,3 +17,5 @@ mkdir build && cd docker
 cmake .. -G "Ninja"
 ninja
 ```
+
+I checked codes can be compiled with `NVIDIA GeForce RTX 4060 Laptop GPU`.
