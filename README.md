@@ -1,4 +1,5 @@
 # Cuda Practice
+
 [![CMake on a single platform](https://github.com/tsumli/cuda_practice/actions/workflows/ci_test.yml/badge.svg?branch=main)](https://github.com/tsumli/cuda_practice/actions/workflows/ci_test.yml)
 
 ## Build docker image
@@ -19,3 +20,5 @@ mkdir build && cd docker
 cmake .. -G "Ninja"
 ninja
 ```
+
+I checked codes can be compiled with `NVIDIA GeForce RTX 4060 Laptop GPU`.
