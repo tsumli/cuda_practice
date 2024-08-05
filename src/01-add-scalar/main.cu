@@ -8,7 +8,7 @@
 #include "common/cuda/utils.h"
 #include "common/exception.h"
 
-__global__ void Add(const int a, const int b, int* c) {
+__global__ void add(const int a, const int b, int* c) {
     uint tid = threadIdx.x + blockIdx.x * blockDim.x;
     if (tid == 0) {
         *c = a + b;
@@ -24,7 +24,7 @@ int main() {
     const int b = dis(gen);
     auto c_device = cupr::cuda::make_unique<int>();
 
-    Add<<<1, 1>>>(a, b, c_device.get());
+    add<<<1, 1>>>(a, b, c_device.get());
     THROW_IF_FAILED(cudaDeviceSynchronize());
 
     const auto c = cupr::cuda::GetValueFromDevice(c_device.get());

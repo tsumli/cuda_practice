@@ -1,4 +1,5 @@
 # Cuda Practice
+
 ## Build docker image
 
 By default, `cuda_practice:0.1.0` will be built.
@@ -19,3 +20,7 @@ ninja
 ```
 
 I checked codes can be compiled with `NVIDIA GeForce RTX 4060 Laptop GPU`.
+
+## Acknowledgement
+
+- https://github.com/NVIDIA/cuda-samples

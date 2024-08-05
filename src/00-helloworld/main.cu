@@ -5,11 +5,11 @@
 
 #include "common/exception.h"
 
-__global__ void HelloDevice() { printf("Hello Device!\n"); }
+__global__ void hello_device() { printf("Hello Device!\n"); }
 
 int main() {
     std::cout << "Hello Host!" << std::endl;
-    HelloDevice<<<1, 1>>>();
+    hello_device<<<1, 1>>>();
     THROW_IF_FAILED(cudaDeviceSynchronize());
     return 0;
 }

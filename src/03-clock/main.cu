@@ -1,6 +1,5 @@
 /**
  * @file main.cu
- * @brief https://developer.nvidia.com/blog/how-optimize-data-transfers-cuda-cc/
  */
 
 #include <cuda.h>
@@ -12,7 +11,7 @@
 #include "common/cuda/utils.h"
 #include "common/exception.h"
 
-__global__ void AddVector(const int* const a, const int* const b, int* c, clock_t* timer) {
+__global__ void add_vector(const int* const a, const int* const b, int* c, clock_t* timer) {
     uint tid = threadIdx.x + blockIdx.x * blockDim.x;
     clock_t start = clock();
     c[tid] = a[tid] + b[tid];
@@ -35,7 +34,7 @@ int main() {
 
     auto timer_device = cupr::cuda::make_unique<clock_t>();
 
-    AddVector<<<3, 3>>>(a_device.get(), b_device.get(), c_device.get(), timer_device.get());
+    add_vector<<<3, 3>>>(a_device.get(), b_device.get(), c_device.get(), timer_device.get());
     THROW_IF_FAILED(cudaDeviceSynchronize());
 
     const auto c = cupr::cuda::GetVectorFromDevice(c_device.get(), a.size());
