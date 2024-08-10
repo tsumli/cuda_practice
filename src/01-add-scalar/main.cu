@@ -29,5 +29,5 @@ int main() {
 
     const auto c = cupr::cuda::GetValueFromDevice(c_device.get());
     std::cout << a << " + " << b << " = " << c << std::endl;
-    return 0;
+    return EXIT_SUCCESS;
 }

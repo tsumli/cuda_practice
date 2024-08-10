@@ -44,5 +44,5 @@ int main() {
 
     const auto timer = cupr::cuda::GetValueFromDevice(timer_device.get());
     std::cout << "Clock:" << timer << std::endl;
-    return 0;
+    return EXIT_SUCCESS;
 }

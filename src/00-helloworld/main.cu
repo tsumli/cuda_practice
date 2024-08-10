@@ -11,5 +11,5 @@ int main() {
     std::cout << "Hello Host!" << std::endl;
     hello_device<<<1, 1>>>();
     THROW_IF_FAILED(cudaDeviceSynchronize());
-    return 0;
+    return EXIT_SUCCESS;
 }
