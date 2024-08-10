@@ -46,8 +46,8 @@ RUN apt-get install -y cmake
 # modify permission
 ARG USER
 ARG GROUP=${USER}
-ARG UID=1001
-ARG GID=1001
+ARG UID=1000
+ARG GID=1000
 # Check if the group exists before creating it
 RUN getent group ${GID} || groupadd -g ${GID} ${GROUP}
 # Create the user 
