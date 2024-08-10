@@ -21,7 +21,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS True)
 set(CMAKE_CUDA_STANDARD 20)
 set(CMAKE_CUDA_STANDARD_REQUIRED True)
 set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS}
-    -ccbin /usr/local/bin/g++ -allow-unsupported-compiler)
+    -ccbin /usr/local/bin/g++ -allow-unsupported-compiler -arch=sm_89)
 set(CMAKE_CUDA_FLAGS -allow-unsupported-compiler)
 
 # project settings and add targets

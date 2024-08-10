@@ -1,6 +1,6 @@
 /**
  * @file main.cu
- * @brief https://developer.nvidia.com/blog/cooperative-groups/
+ * @ref https://developer.nvidia.com/blog/cooperative-groups/
  */
 
 #include <cooperative_groups.h>
@@ -35,6 +35,7 @@ __global__ void my_kernel() {
 
 int main() {
     my_kernel<<<dim3{2, 3, 4}, dim3{5, 6, 7}>>>();
+
     THROW_IF_FAILED(cudaDeviceSynchronize());
-    return 0;
+    return EXIT_SUCCESS;
 }

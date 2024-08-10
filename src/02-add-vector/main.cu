@@ -30,5 +30,5 @@ int main() {
     for (auto i = 0; i < a.size(); i++) {
         std::cout << a[i] << " + " << b[i] << " = " << c[i] << std::endl;
     }
-    return 0;
+    return EXIT_SUCCESS;
 }
