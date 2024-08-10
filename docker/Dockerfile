@@ -43,4 +43,27 @@ RUN echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https:
 RUN apt-get update
 RUN apt-get install -y cmake
 
+# modify permission
+ARG USER
+ARG GROUP=${USER}
+ARG UID=1001
+ARG GID=1001
+# Check if the group exists before creating it
+RUN getent group ${GID} || groupadd -g ${GID} ${GROUP}
+# Create the user 
+RUN useradd -m -u ${UID} -g ${GID} -s /bin/bash ${USER}
+
+RUN echo "$USER:$GID" | chpasswd && \
+    usermod --shell /bin/bash $USER && \
+    usermod -aG sudo $USER && \
+    mkdir /etc/sudoers.d && \
+    echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$USER && \
+    chmod 0440 /etc/sudoers.d/$USER && \
+    usermod  --uid $UID $USER && \
+    groupmod --gid $GID $USER
+
+RUN apt install -y sudo 
+USER ${USER}
+ENV HOME=/home/${USER}
+
 WORKDIR /workspace

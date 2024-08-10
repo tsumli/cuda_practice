@@ -1,7 +1,0 @@
-#!/bin/bash
-
-function mod_permission() {
-    sudo python3 scripts/permission.py \
-	    --root_dir '.' --user $USER \
-	    --group $(id -g -n $USER)
-}
