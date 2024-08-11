@@ -14,7 +14,7 @@ bash docker/build.sh
 bash docker/attach.sh
 
 # inside docker
-mkdir build && cd docker
+mkdir build && cd build
 cmake .. -G "Ninja"
 ninja
 ```
