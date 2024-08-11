@@ -7,7 +7,7 @@
 #include <cuda.h>
 #include <cuda_runtime.h>
 
-#include "common/exception.h"
+#include "common/cuda/exception.h"
 
 namespace cg = cooperative_groups;
 

@@ -7,9 +7,9 @@
 
 #include <iostream>
 
+#include "common/cuda/exception.h"
 #include "common/cuda/pointer.h"
 #include "common/cuda/utils.h"
-#include "common/exception.h"
 
 __global__ void add_vector(const int* const a, const int* const b, int* c, clock_t* timer) {
     uint tid = threadIdx.x + blockIdx.x * blockDim.x;
