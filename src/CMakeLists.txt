@@ -1,7 +1,8 @@
 # Build common library
 set(LIB_SRC
-    common/exception.h
+    common/timer.cc
     common/utils.cc
+    common/cuda/exception.h
     common/cuda/utils.h
     common/cuda/pointer.h
 )
@@ -15,3 +16,6 @@ add_subdirectory(02-add-vector)
 add_subdirectory(03-clock)
 add_subdirectory(04-cooperative-groups)
 add_subdirectory(05-device)
+add_subdirectory(06-reduction)
+
+

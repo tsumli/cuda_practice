@@ -1,9 +1,13 @@
+/**
+ * @file main.cu
+ */
+
 #include <cuda.h>
 #include <cuda_runtime.h>
 
 #include <iostream>
 
-#include "common/exception.h"
+#include "common/cuda/exception.h"
 
 __global__ void hello_device() { printf("Hello Device!\n"); }
 

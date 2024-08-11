@@ -5,7 +5,7 @@
 
 #include <vector>
 
-#include "common/exception.h"
+#include "common/cuda/exception.h"
 
 namespace cupr::cuda {
 template <typename T>

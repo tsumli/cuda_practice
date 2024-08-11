@@ -25,3 +25,16 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(Catch2)
 target_include_directories(${TEST_NAME} PUBLIC ${BUILD_LIB_DIR}/catch2/src/)
 target_link_libraries(${TEST_NAME} PUBLIC Catch2::Catch2)
+
+# indicator
+message(STATUS "Setup indicator")
+FetchContent_Declare(
+  indicator
+  GIT_REPOSITORY https://github.com/p-ranav/indicators
+  GIT_TAG v2.3
+  SOURCE_DIR ${BUILD_LIB_DIR}/indicator
+)
+FetchContent_MakeAvailable(indicator)
+set(INDICATOR_INCLUDE ${BUILD_LIB_DIR}/indicator/include)
+target_include_directories(${LIB_NAME} PUBLIC ${INDICATOR_INCLUDE})
+target_link_libraries(${LIB_NAME} PUBLIC indicators)

@@ -1,12 +1,16 @@
+/**
+ * @file main.cu
+ */
+
 #include <cuda.h>
 #include <cuda_runtime.h>
 
 #include <iostream>
 #include <random>
 
+#include "common/cuda/exception.h"
 #include "common/cuda/pointer.h"
 #include "common/cuda/utils.h"
-#include "common/exception.h"
 
 __global__ void add(const int a, const int b, int* c) {
     uint tid = threadIdx.x + blockIdx.x * blockDim.x;

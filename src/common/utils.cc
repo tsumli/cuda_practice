@@ -1,9 +1,21 @@
 #include "common/utils.h"
 
 namespace cupr {
-std::string MakeErrorMessage(const std::string_view msg, const std::source_location location) {
-    const auto file = std::string(location.file_name());
-    const auto line = std::to_string(location.line());
-    return file + " (line " + line + ")" + ": " + std::string(msg);
+indicators::ProgressBar CreateProgressBar(const std::string_view postfix,
+                                          const std::uint32_t bar_width) {
+    return indicators::ProgressBar{
+        indicators::option::BarWidth{bar_width},
+        indicators::option::Start{"["},
+        indicators::option::Fill{"="},
+        indicators::option::Lead{">"},
+        indicators::option::Remainder{" "},
+        indicators::option::End{"]"},
+        indicators::option::PostfixText{postfix},
+        indicators::option::ForegroundColor{indicators::Color::green},
+        indicators::option::FontStyles{
+            std::vector<indicators::FontStyle>{indicators::FontStyle::bold}},
+        indicators::option::ShowPercentage{true},
+    };
 }
+
 }  // namespace cupr
