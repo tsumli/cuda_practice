@@ -1,7 +1,7 @@
 # Build common library
 set(LIB_SRC
     common/timer.cc
-    common/utils.cc
+    common/progress_bar.cc
     common/cuda/exception.h
     common/cuda/utils.h
     common/cuda/pointer.h

@@ -14,8 +14,8 @@
 #include "common/cuda/exception.h"
 #include "common/cuda/pointer.h"
 #include "common/cuda/utils.h"
+#include "common/progress_bar.h"
 #include "common/timer.h"
-#include "common/utils.h"
 
 __global__ void reduction_shared_mem(int *const output, const int *const input, const int size) {
     const auto tid = threadIdx.x;
