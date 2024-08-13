@@ -117,7 +117,7 @@ double compute_average(const std::vector<uint32_t> &values) {
 }
 
 int main() {
-    constexpr std::size_t kInputSize = 100'000;
+    constexpr std::size_t kInputSize = 10000;
     constexpr std::size_t kTestCount = 1000;
     constexpr std::uint32_t WarpSize = 32;
 
