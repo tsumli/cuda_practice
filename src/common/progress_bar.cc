@@ -1,4 +1,4 @@
-#include "common/utils.h"
+#include "progress_bar.h"
 
 namespace cupr {
 indicators::ProgressBar CreateProgressBar(const std::string_view postfix,

@@ -1,5 +1,5 @@
-#ifndef SRC_COMMON_UTILS_H_
-#define SRC_COMMON_UTILS_H_
+#ifndef SRC_COMMON_PROGRESS_BAR_H_
+#define SRC_COMMON_PROGRESS_BAR_H_
 
 #include <indicators/progress_bar.hpp>
 
@@ -9,4 +9,4 @@ indicators::ProgressBar CreateProgressBar(const std::string_view postfix,
 
 }  // namespace cupr
 
-#endif  // SRC_COMMON_UTILS_H_
+#endif  // SRC_COMMON_PROGRESS_BAR_H_

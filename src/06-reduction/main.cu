@@ -14,20 +14,23 @@
 #include "common/cuda/exception.h"
 #include "common/cuda/pointer.h"
 #include "common/cuda/utils.h"
+#include "common/progress_bar.h"
 #include "common/timer.h"
-#include "common/utils.h"
 
+template <uint WarpSize>
 __global__ void reduction_shared_mem(int *const output, const int *const input, const int size) {
     const auto tid = threadIdx.x;
     const auto num_threads = blockDim.x;
     const auto num_blocks = gridDim.x;
 
+    // Compute sum of elements in the block
     auto sum{0};
     for (auto i = tid; i < size; i += num_threads * num_blocks) {
         sum += input[i];
     }
 
-    __shared__ int shared_sum[32];
+    // Store the sum in shared memory
+    __shared__ int shared_sum[WarpSize];
     shared_sum[tid] = sum;
 
     __syncthreads();
@@ -89,7 +92,7 @@ std::optional<std::uint32_t> TestReductionKernel(Function fn, const std::size_t 
     std::uint32_t duration;
     {
         const auto timer = cupr::ScopedTimer(duration);
-        fn<<<1, 1>>>(output_device.get(), input_device.get(), kInputSize);
+        fn<<<1, 32>>>(output_device.get(), input_device.get(), kInputSize);
         THROW_IF_FAILED(cudaDeviceSynchronize());
     }
 
@@ -114,8 +117,9 @@ double compute_average(const std::vector<uint32_t> &values) {
 }
 
 int main() {
-    constexpr std::size_t kInputSize = 100'000;
+    constexpr std::size_t kInputSize = 10000;
     constexpr std::size_t kTestCount = 1000;
+    constexpr std::uint32_t WarpSize = 32;
 
     // Test reduction kernels (`reduction_shared_mem`)
     {
@@ -125,7 +129,7 @@ int main() {
         durations.reserve(kTestCount);
         for (std::size_t test_i = 0; test_i < kTestCount; test_i++) {
             bar.set_progress(static_cast<double>(test_i + 1) * 100 / kTestCount);
-            const auto duration = TestReductionKernel(reduction_shared_mem, kInputSize);
+            const auto duration = TestReductionKernel(reduction_shared_mem<WarpSize>, kInputSize);
             if (!duration) {
                 std::cout << "Test failed" << std::endl;
                 return EXIT_FAILURE;
@@ -144,7 +148,7 @@ int main() {
         durations.reserve(kTestCount);
         for (std::size_t test_i = 0; test_i < kTestCount; test_i++) {
             bar.set_progress(static_cast<double>(test_i + 1) * 100 / kTestCount);
-            const auto duration = TestReductionKernel(reduction_shared_mem, kInputSize);
+            const auto duration = TestReductionKernel(reduction_shared_mem<WarpSize>, kInputSize);
             if (!duration) {
                 std::cout << "Test failed" << std::endl;
                 return EXIT_FAILURE;
