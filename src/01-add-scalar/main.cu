@@ -31,7 +31,7 @@ int main() {
     add<<<1, 1>>>(a, b, c_device.get());
     THROW_IF_FAILED(cudaDeviceSynchronize());
 
-    const auto c = cupr::cuda::GetValueFromDevice(c_device.get());
+    const auto c = cupr::cuda::CopyFromDevice(c_device.get());
     std::cout << a << " + " << b << " = " << c << std::endl;
     return EXIT_SUCCESS;
 }

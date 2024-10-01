@@ -9,17 +9,19 @@
 
 namespace cupr::cuda {
 template <typename T>
-T GetValueFromDevice(const T* const value_device) {
+T CopyFromDevice(const T* const value_device, cudaStream_t stream = nullptr) {
     T value;
-    THROW_IF_FAILED(cudaMemcpy(&value, value_device, sizeof(T), cudaMemcpyDeviceToHost));
+    THROW_IF_FAILED(
+        cudaMemcpyAsync(&value, value_device, sizeof(T), cudaMemcpyDeviceToHost, stream));
     return value;
 }
 
 template <typename T>
-std::vector<T> GetVectorFromDevice(const T* const value_device, const size_t size) {
+std::vector<T> CopyFromDevice(const T* const value_device, const size_t size,
+                              cudaStream_t stream = nullptr) {
     std::vector<T> value(size);
-    THROW_IF_FAILED(
-        cudaMemcpy(value.data(), value_device, size * sizeof(T), cudaMemcpyDeviceToHost));
+    THROW_IF_FAILED(cudaMemcpyAsync(value.data(), value_device, size * sizeof(T),
+                                    cudaMemcpyDeviceToHost, stream));
     return value;
 }
 

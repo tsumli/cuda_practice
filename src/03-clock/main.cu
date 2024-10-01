@@ -37,12 +37,12 @@ int main() {
     add_vector<<<3, 3>>>(a_device.get(), b_device.get(), c_device.get(), timer_device.get());
     THROW_IF_FAILED(cudaDeviceSynchronize());
 
-    const auto c = cupr::cuda::GetVectorFromDevice(c_device.get(), a.size());
+    const auto c = cupr::cuda::CopyFromDevice(c_device.get(), a.size());
     for (auto i = 0; i < a.size(); i++) {
         std::cout << a[i] << " + " << b[i] << " = " << c[i] << std::endl;
     }
 
-    const auto timer = cupr::cuda::GetValueFromDevice(timer_device.get());
+    const auto timer = cupr::cuda::CopyFromDevice(timer_device.get());
     std::cout << "Clock:" << timer << std::endl;
     return EXIT_SUCCESS;
 }

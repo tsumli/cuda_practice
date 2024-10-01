@@ -96,7 +96,7 @@ std::optional<std::uint32_t> TestReductionKernel(Function fn, const std::size_t 
         THROW_IF_FAILED(cudaDeviceSynchronize());
     }
 
-    const auto output_host = cupr::cuda::GetValueFromDevice(output_device.get());
+    const auto output_host = cupr::cuda::CopyFromDevice(output_device.get());
 
     if (ans_expected != output_host) {
         std::cerr << "Test failed" << std::endl;
